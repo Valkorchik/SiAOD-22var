@@ -1,9 +1,7 @@
 #include <iostream>
-#include <string>
 #include <vector>
 using namespace std;
 vector<int> VectorCreate(int);
-vector<int>VectorRandomFiller(vector<int>);
 void VectorShower(vector<int>);
 int IndexSearcher(vector<int>&);
 string ElementInsert(vector<int>&);
@@ -24,7 +22,7 @@ int main()
     VectorShower(arr);
 
 }
-vector<int> VectorCreate(int n)
+vector<int> VectorCreate(int n) //Создание вектора
 {
     vector<int> arr(n);
     for(int i=0;i<n;i++)
@@ -33,16 +31,7 @@ vector<int> VectorCreate(int n)
     }
     return arr;
 }
-vector<int>VectorRandomFiller(vector<int> arr)
-{
-    srand(time(NULL));
-    for(int i=0;i<arr.size();i++)
-    {
-        arr[i]=rand()%100+1;
-    }
-    return arr;
-}
-void VectorShower(vector<int> arr)
+void VectorShower(vector<int> arr) //Вывод элементов вектора
 {
     cout<<"Array: \n";
     for (int i = 0; i < arr.size(); i++)
@@ -51,7 +40,7 @@ void VectorShower(vector<int> arr)
     }
     cout << endl;
 }
-int IndexSearcher(vector<int>& arr)
+int IndexSearcher(vector<int>& arr) //Нахождение индекса по условию
 {
     vector<int> local_arr=arr;
     int counter=0;
@@ -77,7 +66,7 @@ int IndexSearcher(vector<int>& arr)
     }
     return -1;
 }
-string ElementInsert(vector<int>& arr)
+string ElementInsert(vector<int>& arr) //Вставка элемента
 {
     int elem;
     cout<<"Enter element: \n";
@@ -106,7 +95,7 @@ string ElementInsert(vector<int>& arr)
     }
     return "No index found\n";
 }
-string ElementErase(vector<int>& arr)
+string ElementErase(vector<int>& arr) //Удаление элементов из вектора
 {
     for(int i=0;i<arr.size();++i)
     {

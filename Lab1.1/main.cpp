@@ -2,7 +2,6 @@
 #include <string>
 using namespace std;
 int* ArrayCreate(int*,const int&);
-int* ArrayRandomFiller(int*, const int&);
 void ArrayShower( const int& , const int*);
 int IndexSearcher(const int*, const int&);
 string ElementInsert(int*, int&);
@@ -28,15 +27,6 @@ int* ArrayCreate(int* arr,const int& size)
     {
         cin>>arr_value;
         arr[i]=arr_value;
-    }
-    return arr;
-}
-int* ArrayRandomFiller(int* arr,const int& size)
-{
-    srand(time(NULL));
-    for(int i=0;i<size;i++)
-    {
-        arr[i]=rand()%100+1;
     }
     return arr;
 }
