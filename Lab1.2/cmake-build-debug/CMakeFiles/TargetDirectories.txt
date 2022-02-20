@@ -1,3 +1,0 @@
-C:/Users/GX701LV PR#3/Documents/GitHub/SiAOD-22var/Lab1.2/cmake-build-debug/CMakeFiles/Lab1_2.dir
-C:/Users/GX701LV PR#3/Documents/GitHub/SiAOD-22var/Lab1.2/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/GX701LV PR#3/Documents/GitHub/SiAOD-22var/Lab1.2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
