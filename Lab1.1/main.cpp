@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 using namespace std;
 int* ArrayCreate(int*,const int&);
 void ArrayShower( const int& , const int*);
@@ -10,8 +9,13 @@ int main()
 {
     int arr[100];
     int n;
-    cout<<"Enter array size: \n";
+    cout<<"Enter array size : \n";
     cin>>n;
+    if(n<0)
+    {
+        cout<<"Wrong size"<<endl;
+        return 0;
+    }
     ArrayShower(n,ArrayCreate(arr,n));
     cout<<"First ex (-1 code = index not found): \n";
     cout<<IndexSearcher(arr,n)<<endl;

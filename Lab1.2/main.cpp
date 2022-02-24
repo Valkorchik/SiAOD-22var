@@ -11,6 +11,11 @@ int main()
     int n;
     cout<<"Enter array size: \n";
     cin>>n;
+    if(n<0)
+    {
+        cout<<"Wrong size"<<endl;
+        return 0;
+    }
     int* arr=new int[n];
     ArrayShower(n,ArrayCreate(arr,n));
     cout<<"First ex (-1 code = index not found): \n";
