@@ -133,6 +133,5 @@ int main()
 	MatrixShower(matrix,order);
 	EdinCreate(ematrix,order);
 	TransformMatrix(matrix,ematrix,order);
-
 	return 0;
 }
