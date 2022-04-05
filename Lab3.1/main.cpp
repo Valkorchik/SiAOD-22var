@@ -31,11 +31,6 @@ void StringReader(char* stroka, char* nstroka,int& index)
 			index+=1;
 		}
 	}
-	for(int i=0;i<index;i++)
-	{
-		cout<<nstroka[i];
-	}
-	cout<<endl;
 }
 int StringConverter(char* nstroka, string* string_container, int& index)
 {
