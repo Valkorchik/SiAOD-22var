@@ -3,11 +3,10 @@ using namespace std;
 int* ArrayCreate(int*, const int&);
 void ArrayShower(const int&, const int*);
 int IndexSearcher(const int*, const int&);
-string ElementInsert(int*, int&);
-string ElementErase(int*, int&);
+string ElementInsert(int*&, int&);
+string ElementErase(int*&, int&);
 int main()
 {
-
 	int n;
 	cout << "Enter array size: \n";
 	cin >> n;
@@ -20,7 +19,7 @@ int main()
 	ArrayShower(n, ArrayCreate(arr, n));
 	cout << "First ex (-1 code = index not found): \n";
 	cout << IndexSearcher(arr, n) << endl;
-	cout << "Second ex: \n" << ElementInsert(arr, n);
+	cout << "Second ex: \n" << ElementInsert(arr, ++n);
 	ArrayShower(n, arr);
 	cout << "Third ex: \n" << ElementErase(arr, n);
 	ArrayShower(n, arr);
@@ -53,13 +52,14 @@ int IndexSearcher(const int* arr, const int& size)
 	for (int i = 1; i < size; i++)
 	{
 		local = arr[i];
+		while (local)
 		{
 			int d = arr[i] % 10;
 			if (i % d == 0)
 			{
 				counter += 1;
 			}
-			local= local / 10;
+			local = local / 10;
 			dcounter += 1;
 		}
 		if (counter == dcounter)
@@ -71,56 +71,67 @@ int IndexSearcher(const int* arr, const int& size)
 	}
 	return -1;
 }
-string ElementInsert(int* arr, int& size)
+string ElementInsert(int*& arr, int& size)
 {
 	int elem;
 	cout << "Enter element: \n";
 	cin >> elem;
 	int* local_arr = new int[size];
-	for (int copy = 0; copy < size; copy++)
+	bool insert_check = true;
+	for (int i = 0, j = 0; i < size; i++, j++)
 	{
-		local_arr[copy] = arr[copy];
-	}
-	int counter = 0;
-	int dcounter = 0;
-	for (int i = 0; i < size; i++) {
-		while (local_arr[i]) {
-			int d = arr[i] % 10;
-			if (elem % d == 0) {
-				counter += 1;
-			}
-			local_arr[i] = local_arr[i] / 10;
-			dcounter += 1;
-		}
-		if (counter == dcounter) {
-			local_arr[i + 1] = arr[i + 1];
-			arr[i + 1] = elem;
-			for (int j = i + 1; j < size + 1; j++)
+		if (insert_check == true)
+		{
+			bool check = true;
+			int temp = arr[i];
+			while (temp)
 			{
-				local_arr[j + 1] = arr[j + 1];
-				arr[j + 1] = local_arr[j];
+				if (temp % 10 == elem)
+				{
+					temp =  temp / 10;
+				}
+				else
+				{
+					check = false;
+					break;
+				}
 			}
-			size = size + 1;
-			return "Successfully inserted\n";
+			if (check == true)
+			{
+				local_arr[j++] = arr[i++];
+				local_arr[j] = elem;
+				i--;
+				insert_check = false;
+				continue;
+			}
 		}
-		dcounter = 0;
-		counter = 0;
+		local_arr[j] = arr[i];
 	}
-	return "No index found\n";
+	delete[] arr;
+	arr = local_arr;
+	return "Successfully inserted\n";
 }
-string ElementErase(int* arr, int& size)
+string ElementErase(int*& arr, int& size)
 {
-	for (int i = 0; i < size; ++i)
+	int counter = 0;
+	for (int i = 0; i < size; i++)
 	{
 		if (arr[i] % 3 == 0)
 		{
-			for (int j = i; j < size; j++)
-			{
-				arr[j] = arr[j + 1];
-			}
-			i -= 1;
-			size = size - 1;
+			counter++;
 		}
 	}
+	int* local_arr = new int[size -= counter];
+	for (int i = 0, j = 0; i < size; i++, j++)
+	{
+		if (arr[j] % 3 == 0)
+		{
+			i--;
+		}
+		else
+			local_arr[i] = arr[j];
+	}
+	delete[] arr;
+	arr = local_arr;
 	return "Elements erased\n";
 }

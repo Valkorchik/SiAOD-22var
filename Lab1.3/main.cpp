@@ -25,7 +25,6 @@ int main()
     VectorShower(arr);
     cout<<"Third ex: \n"<<ElementErase(arr);
     VectorShower(arr);
-
 }
 vector<int> VectorCreate(int n) //Создание вектора
 {
@@ -47,19 +46,20 @@ void VectorShower(vector<int> arr) //Вывод элементов вектор�
 }
 int IndexSearcher(vector<int>& arr) //Нахождение индекса по условию
 {
-    vector<int> local_arr=arr;
+    int local;
     int counter=0;
     int dcounter=0;
     for(int i=1;i<arr.size();i++)
     {
-        while(local_arr[i])
+		local=arr[i];
+        while(local)
         {
             int d=arr[i]%10;
             if(i%d==0)
             {
                 counter+=1;
             }
-            local_arr[i]=local_arr[i]/10;
+            local=local/10;
             dcounter+=1;
         }
         if(counter==dcounter)
@@ -73,22 +73,22 @@ int IndexSearcher(vector<int>& arr) //Нахождение индекса по �
 }
 string ElementInsert(vector<int>& arr) //Вставка элемента
 {
-    int elem;
+    int elem, local;
     cout<<"Enter element: \n";
     cin>>elem;
-    vector<int> local_arr=arr;
     int counter=0;
     int dcounter=0;
     for(int i=0;i<arr.size();i++)
     {
-        while (local_arr[i])
+		local=arr[i];
+        while (local)
         {
             int d = arr[i] % 10;
             if (elem % d == 0)
             {
                 counter += 1;
             }
-            local_arr[i] = local_arr[i] / 10;
+            local = local / 10;
             dcounter += 1;
         }
         if (counter == dcounter) {
