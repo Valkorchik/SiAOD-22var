@@ -8,7 +8,7 @@ vector<int> LengthSearcher(string*, int);
 void PrintWords(string*, vector<int>);
 int main()
 {
-	string stroka="CAR  ,SAR,,DOOR POOR"; //Проблемы реализации cin ввода: Вывод в PrintWords идет по порядку, значения теряются=>наименьшее число сходств должно быть в первых двух словах
+	string stroka="CAR  ,SAR,,DOOR POOR";
 	string string_container[100];
 	string nstroka;
 	StringReader(stroka, nstroka);
