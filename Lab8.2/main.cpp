@@ -20,12 +20,12 @@ int main() {
 		arrRand(arr,n);
 	}
 	cout<<"\nSource array: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	auto begin = std::chrono::high_resolution_clock::now();
 	shakerSort(arr, n);
 	auto end = std::chrono::high_resolution_clock::now();
 	cout<<"Array after sort: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	std::chrono::duration<float> duration =   end - begin;
 	std::cout << "\nSorting time: " << duration.count() << "ms\n";
 	delete[] arr;
@@ -62,7 +62,7 @@ void shakerSort(int *arr, int n)
 		ivers=false;
 		for (int i = rightMark; i >= leftMark; i--)
 		{
-			if (arr[i - 1] > arr[i])
+			if (arr[i - 1] < arr[i])
 			{
 				swap(arr, i);
 				ivers=true;
@@ -71,7 +71,7 @@ void shakerSort(int *arr, int n)
 		leftMark++;
 		for (int i = leftMark; i <= rightMark; i++)
 		{
-			if (arr[i - 1] > arr[i])
+			if (arr[i - 1] < arr[i])
 			{
 				swap (arr, i);
 				ivers=true;
@@ -79,7 +79,7 @@ void shakerSort(int *arr, int n)
 		}
 		if(ivers==false)
 		{
-			break;
+			return;
 		}
 		rightMark--;
 	}
