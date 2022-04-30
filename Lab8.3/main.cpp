@@ -20,12 +20,12 @@ int main() {
 		arrRand(arr,n);
 	}
 	cout<<"\nSource array: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	auto begin = std::chrono::high_resolution_clock::now();
 	stoogeSort(arr,0, n-1);
 	auto end = std::chrono::high_resolution_clock::now();
 	cout<<"Array after sort: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	std::chrono::duration<float> duration =   end - begin;
 	std::cout << "\nSorting time: " << duration.count() << "ms\n";
 	delete[] arr;
