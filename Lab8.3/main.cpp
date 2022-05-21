@@ -2,10 +2,10 @@
 #include <chrono>
 using namespace std;
 void arrInput(int* arr,int n);
-void swap(int *arr, int index);
 void arrRand(int* arr,int n);
 void arrOutput(int* arr,int n);
-void shakerSort(int *arr, int n);
+void swap(int& first, int& second);
+void stoogeSort(int* arr,int l, int h);
 int main() {
 	int n,choice;
 	cin>>n;
@@ -22,7 +22,7 @@ int main() {
 	cout<<"\nSource array: \n";
 	arrOutput(arr,n);
 	auto begin = std::chrono::high_resolution_clock::now();
-	shakerSort(arr, n);
+	stoogeSort(arr,0, n-1);
 	auto end = std::chrono::high_resolution_clock::now();
 	cout<<"Array after sort: \n";
 	arrOutput(arr,n);
@@ -45,45 +45,6 @@ void arrRand(int* arr,int n)
 		arr[i] = rand() % 100;
 	}
 }
-void swap(int *arr, int index)
-{
-	int buff;
-	buff = arr[index];
-	arr[index] = arr[index - 1];
-	arr[index - 1] = buff;
-}
-void shakerSort(int *arr, int n)
-{
-	bool ivers;
-	int leftMark = 1;
-	int rightMark = n - 1;
-	while (leftMark <= rightMark)
-	{
-		ivers=false;
-		for (int i = rightMark; i >= leftMark; i--)
-		{
-			if (arr[i - 1] < arr[i])
-			{
-				swap(arr, i);
-				ivers=true;
-			}
-		}
-		leftMark++;
-		for (int i = leftMark; i <= rightMark; i++)
-		{
-			if (arr[i - 1] < arr[i])
-			{
-				swap (arr, i);
-				ivers=true;
-			}
-		}
-		if(ivers==false)
-		{
-			return;
-		}
-		rightMark--;
-	}
-}
 void arrOutput(int* arr,int n)
 {
 	for(int i=0;i<n;i++)
@@ -91,4 +52,25 @@ void arrOutput(int* arr,int n)
 		cout<<arr[i]<<"\t";
 	}
 	cout<<endl;
+}
+void swap(int& first, int& second)
+{
+	int buff;
+	buff = first;
+	first= second;
+	second = buff;
+}
+void stoogeSort(int* arr,int l, int h)
+{
+    if (l >= h)
+      return;
+    if (arr[l] > arr[h])
+       swap(arr[l], arr[h]);
+    if(h-l+1>2)
+    {
+        int t = (h-l+1)/3;
+        stoogeSort(arr, l, h-t);
+        stoogeSort(arr, l+t, h);
+        stoogeSort(arr, l, h-t);
+    }
 }

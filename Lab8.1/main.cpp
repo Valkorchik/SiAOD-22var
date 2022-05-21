@@ -19,12 +19,12 @@ int main() {
 		arrRand(arr,n);
 	}
 	cout<<"\nSource array: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	auto begin = std::chrono::high_resolution_clock::now();
 	insertionSort(arr,n);
 	auto end = std::chrono::high_resolution_clock::now();
 	cout<<"Array after sort: \n";
-	//arrOutput(arr,n);
+	arrOutput(arr,n);
 	std::chrono::duration<float> duration =   end - begin;
 	std::cout << "\nSorting time: " << duration.count() << "ms\n";
 	delete[] arr;
@@ -51,7 +51,7 @@ void insertionSort(int* arr, int n)
 	{
 		temp = arr[counter];
 		item = counter-1;
-		while(item >= 0 && arr[item] > temp)
+		while(item >= 0 && arr[item] < temp)
 		{
 			arr[item + 1] = arr[item];
 			arr[item] = temp;
@@ -59,6 +59,7 @@ void insertionSort(int* arr, int n)
 		}
 	}
 }
+
 void arrOutput(int* arr,int n)
 {
 	for(int i=0;i<n;i++)
